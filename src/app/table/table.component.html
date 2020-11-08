@@ -1,0 +1,31 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Task</th>
+            <th scope="col">Check</th>
+            <th scope="col">DONE/IN PROGRESS</th>
+            <th scope="col">Edit</th>
+            <th scope="col">DELETE</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr scope="row" *ngFor="let task of getTask; index as i">
+            <th>{{ i+1 }}</th>
+            <th class="taskStyle">{{ task.taskA }}</th>
+            <th><input type="checkbox" name="{{ task.taskA }}" (change)="onchange(i)" [(ngModel)]="task.isselected">
+            </th>
+            <th [style.color]="task.progressColor">{{ task.progress }}</th>
+            <th><button class="edit" (click)="edit(i)">edit</button></th>
+            <th><button class="delete" [disabled]="!task.isselected" (click)="sendNumber()"
+                    (click)="deleteUser(i)">delete</button></th>
+        </tr>
+        <tr *ngIf="isOn">
+            <th></th>
+            <th></th>
+            <th></th>
+            <th><input [(ngModel)]="newTask" name="newTask" type="text" class="saveTask"></th>
+            <th><button class="save" (click)="save()">save</button></th>
+        </tr>
+    </tbody>
+</table>
